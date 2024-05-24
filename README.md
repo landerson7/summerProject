@@ -8,6 +8,8 @@ Build a calendar/todo list full stack application for deployment on home server
 - Andres: learn basics of HTML/CSS, try and make the form, also look at SQL
 - Luke: Set up database in MySQL
 
+# Going forward, all stages need CRUD operations (Create, Read, Update, Delete) #
+
 # Week 3 #
 - Create a to-do list form that updates the database and displays current date
 - Make the to-do list form look beautiful

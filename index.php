@@ -1,23 +1,35 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>GFG- Store Data</title>
+   </head>
+   <body>
+      <center>
+         <h1>Storing Form data in Database</h1>
+         <form action="insert.php" method="post">
+            
+<p>
+               <label for="title">To-Do:</label>
+               <input type="varchar" name="title" id="title">
+            </p>
 
-$connect = mysqli_connect(
-    'db', # service name
-    'php_docker', # username
-    'password', # password
-    'php_docker' # db table
-);
+            
+<p>
+               <label for="body">Description:</label>
+               <input type="text" name="body" id="body">
+            </p>
 
-$table_name = "php_docker_table";
+            
+<p>
+               <label for="date_of_to_do">Date:</label>
+               <input type="date_of_to_do" name="date_of_to_do" id="date_of_to_do">
+            </p>
 
-$query = "SELECT * FROM $table_name";
+            
 
-$response = mysqli_query($connect, $query);
 
-echo "<strong>$table_name: </strong>";
-while($i = mysqli_fetch_assoc($response))
-{
-    echo "<p>".$i['title']."</p>";
-    echo "<p>".$i['body']."</p>";
-    echo "<p>".$i['date_created']."</p>";
-    echo "<hr>";
-}
+            <input type="submit" value="Submit">
+         </form>
+      </center>
+   </body>
+</html>

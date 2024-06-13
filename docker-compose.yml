@@ -1,6 +1,9 @@
 version: '3' # docker version
 services:
   www:
+    build:
+      context: .
+      dockerfile: Mysqli
     image: php:apache
     volumes:
       - "./:/var/www/html" #sync project dir with container web dir
@@ -10,7 +13,7 @@ services:
   db:
     image: mysql:latest
     environment:
-      - MYSQL_DATABASE=php_docker
+      - MYSQL_DATABASE=to_dos
       - MYSQL_USER=php_docker
       - MYSQL_PASSWORD=password # this should live in a env var
       - MYSQL_ALLOW_EMPTY_PASSWORD=1 # equivalent to True

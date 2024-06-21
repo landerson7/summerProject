@@ -31,11 +31,11 @@
                 . "$date_of_to_do\n");
         } else{
             echo "ERROR: Hush! Sorry $sql. " 
-                . mysqli_error($conn);
+                . mysqli_error($connect);
         }
 
         // Close connection
-        mysqli_close($conn);
+        mysqli_close($connect);
         ?>
     </center>
 </body>

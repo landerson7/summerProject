@@ -13,7 +13,7 @@
 
 <body>
     <header>
-    <a href="#" class="logo-holder">
+    <a href="./index.php" class="logo-holder">
             <div class="logo"></div>
             <div class="logo-text">Planner</div>
         </a>
@@ -35,8 +35,40 @@
             </a>
         </nav>
     </header>
-      <center>
-         <h1>Welcome to the Planner! <small>Please click the buttons above to get started.</small></h1>
-      </center>
-   </body>
+    <center>
+        <?php
+
+        $connect = mysqli_connect(
+            'localhost', # service name
+            'myadmin', # username
+            'rays0007', # password
+            'to_dos' # db table
+        );
+
+        $title =  $_REQUEST['title'];
+        $body = $_REQUEST['body'];
+        $date_of_to_do =  $_REQUEST['date_of_to_do'];
+
+        $sql = "INSERT INTO to_dos(title, body, date_of_to_do) VALUES ('$title', '$body', '$date_of_to_do')";
+
+        if(mysqli_query($connect, $sql)){
+            echo "<h3>data stored in a database successfully." 
+                . " Please browse your localhost php my admin" 
+                . " to view the updated data</h3>"; 
+
+            echo nl2br("\n$title\n $body\n "
+                . "$date_of_to_do\n");
+        } else{
+            echo "ERROR: Hush! Sorry $sql. " 
+                . mysqli_error($connect);
+        }
+
+        // Close connection
+        mysqli_close($connect);
+        ?>
+        <div class="call-to-action">
+            <a href="delete.php" class="button black">Delete To-Do</a>
+        </div>
+    </center>
+</body>
 </html>

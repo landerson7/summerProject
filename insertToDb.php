@@ -41,7 +41,7 @@
         $connect = mysqli_connect(
             'localhost', # service name
             'myadmin', # username
-            'rays0007', # password
+            'Spiderman12', # password
             'to_dos' # db table
         );
 

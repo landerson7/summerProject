@@ -35,64 +35,53 @@
             </a>
         </nav>
     </header>
-      <center>
-         <h1>Create New To-Do <br>
+    <center>
+        <h1>Create New To-Do <br>
             <small>Current To-Dos:</small>
         </h1>
-         <?php
-            // Connect to the database
-            $connect = mysqli_connect('localhost', 'myadmin', 'rays0007', 'to_dos');
-            if (!$connect) {
-                die('Could not connect: ' . mysqli_error($connect));
-            }
+        <?php
+        // Connect to the database
+        $connect = mysqli_connect('localhost', 'myadmin', 'Spiderman12', 'to_dos');
+        if (!$connect) {
+            die('Could not connect: ' . mysqli_connect_error());
+        }
 
-            // Define the SQL query
-            $sql = 'SELECT title, body, date_of_to_do FROM to_dos';
+        // Define the SQL query
+        $sql = 'SELECT title, body, date_of_to_do FROM to_dos';
 
-            // Execute the query
-            $result = mysqli_query($connect, $sql);
+        // Execute the query
+        $result = mysqli_query($connect, $sql);
 
-            if (!$result) {
-                die('Could not get data: ' . mysqli_error($connect));
-            }
+        if (!$result) {
+            die('Could not get data: ' . mysqli_error($connect));
+        }
 
-            // Fetch the data and display it
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "To-Do: " . $row['title'] . "<br> " .
-                    "Description: " . $row['body'] . "<br> " .
-                    "Date: " . $row['date_of_to_do'] . "<br> " .
-                    "--------------------------------<br>";
-            }
+        // Fetch the data and display it
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "To-Do: " . htmlspecialchars($row['title']) . "<br> " .
+                "Description: " . htmlspecialchars($row['body']) . "<br> " .
+                "Date: " . htmlspecialchars($row['date_of_to_do']) . "<br> " .
+                "--------------------------------<br>";
+        }
 
-            
-
-            // Close the connection
-            mysqli_close($connect);
+        // Close the connection
+        mysqli_close($connect);
         ?>
-         <form action="insertToDb.php" method="post">
-            
-<p>
-               <label for="title">To-Do:</label>
-               <input type="varchar" name="title" id="title" placeholder="Walk the Dog">
+        <form action="insertToDb.php" method="post">
+            <p>
+                <label for="title">To-Do:</label>
+                <input type="text" name="title" id="title" placeholder="Walk the Dog">
             </p>
-
-            
-<p>
-               <label for="body">Description:</label>
-               <input type="text" name="body" id="body" placeholder="Walk the dog around the block">
+            <p>
+                <label for="body">Description:</label>
+                <input type="text" name="body" id="body" placeholder="Walk the dog around the block">
             </p>
-
-            
-<p>
-               <label for="date_of_to_do">Date:</label>
-               <input type="date_of_to_do" name="date_of_to_do" id="date_of_to_do" placeholder="YYYY-MM-DD">
+            <p>
+                <label for="date_of_to_do">Date:</label>
+                <input type="date" name="date_of_to_do" id="date_of_to_do" placeholder="YYYY-MM-DD">
             </p>
-
-            
-
-
-            <input type="submit" value="Submit" class = "button black">
-         </form>
-      </center>
-   </body>
+            <input type="submit" value="Submit" class="button black">
+        </form>
+    </center>
+</body>
 </html>

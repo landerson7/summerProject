@@ -42,9 +42,9 @@
 
         <?php
             // Connect to the database
-            $connect = mysqli_connect('localhost', 'myadmin', 'rays0007', 'to_dos');
+            $connect = mysqli_connect('localhost', 'myadmin', 'Spiderman12', 'to_dos');
             if (!$connect) {
-                die('Could not connect: ' . mysqli_error($connect));
+                 die('Could not connect: ' . mysqli_connect_error());
             }
 
             // Define the SQL query

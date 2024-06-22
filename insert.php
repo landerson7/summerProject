@@ -73,19 +73,19 @@
             
 <p>
                <label for="title">To-Do:</label>
-               <input type="varchar" name="title" id="title">
+               <input type="varchar" name="title" id="title" placeholder="Walk the Dog">
             </p>
 
             
 <p>
                <label for="body">Description:</label>
-               <input type="text" name="body" id="body">
+               <input type="text" name="body" id="body" placeholder="Walk the dog around the block">
             </p>
 
             
 <p>
                <label for="date_of_to_do">Date:</label>
-               <input type="date_of_to_do" name="date_of_to_do" id="date_of_to_do">
+               <input type="date_of_to_do" name="date_of_to_do" id="date_of_to_do" placeholder="YYYY-MM-DD">
             </p>
 
             

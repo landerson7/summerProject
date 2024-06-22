@@ -13,7 +13,7 @@
 
 <body>
     <header>
-    <a href="#" class="logo-holder">
+    <a href="./index.php" class="logo-holder">
             <div class="logo"></div>
             <div class="logo-text">Planner</div>
         </a>
@@ -75,7 +75,7 @@
             
 <p>
                <label for="title">To-Do:</label>
-               <input type="varchar" name="title" id="title">
+               <input type="varchar" name="title" id="title" placeholder="Walk the Dog">
             </p>
 
             

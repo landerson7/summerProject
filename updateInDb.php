@@ -45,17 +45,19 @@
             'to_dos' # db table
         );
 
-        $title =  $_REQUEST['title'];
         
-
-        $sql = "DELETE FROM to_dos WHERE title=?";
+        $title =  $_REQUEST['title'];
+        $body = $_REQUEST['body'];
+        
+        
+        $sql = "UPDATE to_dos SET title=?, body=? WHERE title=?";
         $stmt = mysqli_prepare($connect, $sql);
         
         if($stmt){
-            mysqli_stmt_bind_param($stmt, "s", $title);
+            mysqli_stmt_bind_param($stmt, "sss", $title, $body, $title);
 
             if(mysqli_stmt_execute($stmt)){
-                echo "<h3>To-do deleted.</h3>";
+                echo "<h3>To-do Updated.</h3>";
                 
             }
             else{

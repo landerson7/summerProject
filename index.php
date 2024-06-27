@@ -23,8 +23,15 @@
                     <a href="./insert.php">Create</a>
                 </li>
                 <li>
+                    <a href="./read.php">Read</a>
+                </li>
+                <li>
+                    <a href="./update.php">Update</a>
+                </li>
+                <li>
                     <a href="./delete.php">Delete</a>
                 </li>
+                
                 
             </ul>
             <a href="#" class="mobile-toggle" onClick="toggleMobileMenu();">
@@ -36,7 +43,8 @@
         </nav>
     </header>
       <center>
-         <h1>Welcome to the Planner! <small>Please click the buttons above to get started.</small></h1>
+         <h1>Welcome to the Planner!<br> <small>Please click the buttons above to get started or wait to be redirected to your current to-dos.</small></h1>
+         <meta http-equiv="refresh" content="10;url=./read.php">
       </center>
    </body>
 </html>

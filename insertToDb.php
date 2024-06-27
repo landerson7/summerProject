@@ -66,6 +66,7 @@
         // Close connection
         mysqli_close($connect);
         ?>
+        <meta http-equiv="refresh" content="3;url=./index.php">
         <div class="call-to-action">
             <a href="delete.php" class="button black">Delete To-Do</a>
         </div>

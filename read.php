@@ -41,55 +41,46 @@
             </a>
         </nav>
     </header>
-      
-         <h1>Delete To-Do in Database <br>
-            <small>Current To-Dos:</small>
-        </h1>
+    <section class="notebook-paper">
+        <div class="notebook-paper">
+            <h1 class="title">To-Dos for 
+                <?php
+                    echo date("m/d/Y");
+                    
+                ?>
+            </h1>
+            <div class="content">
+                <?php
+                // Connect to the database
+                
+                $connect = mysqli_connect('localhost', 'myadmin', 'Spiderman12', 'to_dos');
+                if (!$connect) {
+                    die('Could not connect: ' . mysqli_connect_error());
+                }
 
-        <?php
-            // Connect to the database
-            $connect = mysqli_connect('localhost', 'myadmin', 'Spiderman12', 'to_dos');
-            if (!$connect) {
-                 die('Could not connect: ' . mysqli_connect_error());
-            }
+                // Define the SQL query
+                $sql = 'SELECT title, body, date_of_to_do FROM to_dos';
 
-            // Define the SQL query
-            $sql = 'SELECT title, body, date_of_to_do FROM to_dos';
+                // Execute the query
+                $result = mysqli_query($connect, $sql);
 
-            // Execute the query
-            $result = mysqli_query($connect, $sql);
+                if (!$result) {
+                    die('Could not get data: ' . mysqli_error($connect));
+                }
 
-            if (!$result) {
-                die('Could not get data: ' . mysqli_error($connect));
-            }
+                // Fetch the data and display it
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<li>" . htmlspecialchars($row['title']) . "</li> " .
+                        "<ul class = a><li> " . htmlspecialchars($row['body']) . "</ul></li><br> ";
+                }
 
-            // Fetch the data and display it
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "To-Do: " . $row['title'] . "<br> " .
-                    "Description: " . $row['body'] . "<br> " .
-                    "Date: " . $row['date_of_to_do'] . "<br> " .
-                    "--------------------------------<br>";
-            }
-
-            
-
-            // Close the connection
-            mysqli_close($connect);
-        ?>
-
-         <form action="deleteFromDb.php" method="post">
-            
-<p>
-               <label for="title">To-Do:</label>
-               <input type="varchar" name="title" id="title" placeholder="Walk the Dog">
-            </p>
-
-            
-          
-
-
-            <input type="submit" value="Submit" class="button black">
-         </form>
-      
-   </body>
+                // Close the connection
+                mysqli_close($connect);
+                ?>
+                
+                </div>
+        </div>
+    </section>
+    
+</body>
 </html>

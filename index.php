@@ -22,9 +22,7 @@
                 <li>
                     <a href="./insert.php">Create</a>
                 </li>
-                <li>
-                    <a href="./read.php">Read</a>
-                </li>
+                
                 <li>
                     <a href="./update.php">Update</a>
                 </li>
@@ -43,8 +41,41 @@
         </nav>
     </header>
       <center>
-         <h1>Welcome to the Planner!<br> <small>Please click the buttons above to get started or wait to be redirected to your current to-dos.</small></h1>
-         <meta http-equiv="refresh" content="10;url=./read.php">
+         <h1>Welcome to the Planner!<br> <small>Please click the buttons above to get started or wait to be redirected to your current to-dos if you do not
+            select a date below.</small></h1>
+         
+         <form action="./read.php" method="post">
+                    <p>
+                        <label for="date_of_to_do">Date:</label>
+                        <input type="date" name="date_of_to_do" id="date_of_to_do" placeholder="YYYY-MM-DD">
+                    </p>
+                    <input type="submit" value="Submit" class="button black">
+                </form>
+         
+         <?php
+        // Get today's date
+        date_default_timezone_set('America/New_York');
+        $date = date('Y-m-d');
+
+        // Prepare the HTML form with JavaScript to submit it automatically
+        echo '
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta http-equiv="refresh" content="10">
+        </head>
+        <body>
+            <form id="redirectForm" action="./read.php" method="post">
+                <input type="hidden" name="date_of_to_do" value="' . $date . '">
+            </form>
+            <script type="text/javascript">
+                setTimeout(function(){
+                    document.getElementById("redirectForm").submit();
+                }, 30000);
+            </script>
+        </body>
+        </html>';
+        ?>
       </center>
    </body>
 </html>

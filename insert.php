@@ -22,9 +22,7 @@
                 <li>
                     <a href="./insert.php">Create</a>
                 </li>
-                <li>
-                    <a href="./read.php">Read</a>
-                </li>
+                
                 <li>
                     <a href="./update.php">Update</a>
                 </li>

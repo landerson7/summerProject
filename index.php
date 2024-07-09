@@ -1,37 +1,22 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>To-Dos</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <script src="./script.js"></script>
+    <title>Login</title>
 </head>
-
-<body>
-    <header>
+<header>
     <a href="#" class="logo-holder">
             <div class="logo"></div>
             <div class="logo-text">Planner</div>
         </a>
         <nav>
             <ul id="menu">
-                <li>
-                    <a href="./insert.php">Create</a>
-                </li>
-                <li>
-                    <a href="./read.php">Read</a>
-                </li>
-                <li>
-                    <a href="./update.php">Update</a>
-                </li>
-                <li>
-                    <a href="./delete.php">Delete</a>
-                </li>
-                
                 
             </ul>
             <a href="#" class="mobile-toggle" onClick="toggleMobileMenu();">
@@ -42,9 +27,26 @@
             </a>
         </nav>
     </header>
-      <center>
-         <h1>Welcome to the Planner!<br> <small>Please click the buttons above to get started or wait to be redirected to your current to-dos.</small></h1>
-         <meta http-equiv="refresh" content="10;url=./read.php">
-      </center>
-   </body>
+<body>
+    <section class="login container">
+        <div class="login">
+            <h2 class="header">Login</h2>
+            <form action="login.php" method="post" class="login-form">
+            <p class="input-box">
+                <label for="Username"></label>
+                <input type="text" name="username" id="username" placeholder="Username">
+            </p>
+            <p class = "input-box">
+                <label for="Password"></label>
+                <input type="text" name="password" id="password" placeholder="Password">
+            </p>
+            <input type="submit" value="Submit" class="button black">
+        </form>
+        <a href="createAccount.php">Create Account</a>
+        <br>
+        <a href="forgotPassword.php">Forgot Password?</a>
+        </div>
+        
+    </section>
+</body>
 </html>

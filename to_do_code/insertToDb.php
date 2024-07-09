@@ -23,6 +23,9 @@
                     <a href="./insert.php">Create</a>
                 </li>
                 <li>
+                    <a href="./update.php">Update</a>
+                </li>
+                <li>
                     <a href="./delete.php">Delete</a>
                 </li>
                 

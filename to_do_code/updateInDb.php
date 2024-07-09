@@ -23,6 +23,9 @@
                     <a href="./index.php">Create</a>
                 </li>
                 <li>
+                    <a href="./readRequest.php">Read</a>
+                </li>
+                <li>
                     <a href="./update.php">Update</a>
                 </li>
                 <li>

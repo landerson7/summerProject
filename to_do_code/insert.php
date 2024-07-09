@@ -22,7 +22,9 @@
                 <li>
                     <a href="./insert.php">Create</a>
                 </li>
-                
+                <li>
+                    <a href="./readRequest.php">Read</a>
+                </li>
                 <li>
                     <a href="./update.php">Update</a>
                 </li>
@@ -44,37 +46,6 @@
             <h1>Create New To-Do <br>
                     <small>Current To-Dos:</small>
                 </h1>
-            
-                
-                <?php
-                // Connect to the database
-                
-                $connect = mysqli_connect('localhost', 'myadmin', 'Spiderman12', 'to_dos');
-                if (!$connect) {
-                    die('Could not connect: ' . mysqli_connect_error());
-                }
-
-                // Define the SQL query
-                $sql = 'SELECT title, body, date_of_to_do FROM to_dos';
-
-                // Execute the query
-                $result = mysqli_query($connect, $sql);
-
-                if (!$result) {
-                    die('Could not get data: ' . mysqli_error($connect));
-                }
-
-                // Fetch the data and display it
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "To-Do: " . htmlspecialchars($row['title']) . "<br> " .
-                        "Description: " . htmlspecialchars($row['body']) . "<br> " .
-                        "Date: " . htmlspecialchars($row['date_of_to_do']) . "<br> " .
-                        "--------------------------------<br>";
-                }
-
-                // Close the connection
-                mysqli_close($connect);
-                ?>
                 <form action="insertToDb.php" method="post">
                     <p>
                         <label for="title">To-Do:</label>
@@ -90,6 +61,62 @@
                     </p>
                     <input type="submit" value="Submit" class="button black">
                 </form>
+                
+                <?php
+                    session_start();
+                    // Connect to the database
+                    $connect = mysqli_connect('localhost', 'myadmin', 'Spiderman12', 'to_dos');
+                    if (!$connect) {
+                        die('Could not connect: ' . mysqli_connect_error());
+                    }
+
+                    if (isset($_SESSION['user_id'])) { // Ensure session variable is set
+                        $user_id = $_SESSION['user_id'];
+
+                        // Define the SQL query
+                        $sql = "SELECT title, body, date_of_to_do FROM to_dos WHERE user_id = ?";
+                        $stmt = mysqli_prepare($connect, $sql);
+
+                        if ($stmt === false) {
+                            die('MySQL prepare error: ' . mysqli_error($connect));
+                        }
+
+                        // Bind the integer user ID to the parameter, use "i" for integers
+                        mysqli_stmt_bind_param($stmt, "i", $user_id);
+
+                        // Execute the prepared statement
+                        if (mysqli_stmt_execute($stmt) === false) {
+                            die('Execute error: ' . mysqli_stmt_error($stmt));
+                        }
+
+                        // Get the result set from the prepared statement
+                        $result = mysqli_stmt_get_result($stmt);
+                        if (!$result) {
+                            die('Could not get data: ' . mysqli_error($connect));
+                        }
+
+                        // Fetch the data and display it
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "To-Do: " . htmlspecialchars($row['title']) . "<br> " .
+                                "Description: " . htmlspecialchars($row['body']) . "<br> " .
+                                "Date: " . htmlspecialchars($row['date_of_to_do']) . "<br> " .
+                                "--------------------------------<br>";
+                        }
+
+                        // Free result set
+                        mysqli_free_result($result);
+
+                        // Close the prepared statement
+                        mysqli_stmt_close($stmt);
+                    } else {
+                        echo "User ID not set in session.";
+                    }
+
+                    // Close the connection
+                    mysqli_close($connect);
+                ?>
+
+                
             
         </div>
     </section>

@@ -23,6 +23,9 @@
                     <a href="./insert.php">Create</a>
                 </li>
                 <li>
+                    <a href="./readRequest.php">Read</a>
+                </li>
+                <li>
                     <a href="./update.php">Update</a>
                 </li>
                 <li>
@@ -40,7 +43,7 @@
     </header>
     <center>
         <?php
-
+        session_start();
         $connect = mysqli_connect(
             'localhost', # service name
             'myadmin', # username
@@ -51,8 +54,8 @@
         $title =  $_REQUEST['title'];
         $body = $_REQUEST['body'];
         $date_of_to_do =  $_REQUEST['date_of_to_do'];
-
-        $sql = "INSERT INTO to_dos(title, body, date_of_to_do) VALUES ('$title', '$body', '$date_of_to_do')";
+        $user_id = $_SESSION['user_id'];
+        $sql = "INSERT INTO to_dos(title, body, date_of_to_do, user_id) VALUES ('$title', '$body', '$date_of_to_do', '$user_id')";
 
         if(mysqli_query($connect, $sql)){
             echo "<h3>data stored in a database successfully." 
@@ -69,8 +72,9 @@
         // Close connection
         mysqli_close($connect);
         ?>
-        <meta http-equiv="refresh" content="3;url=./index.php">
+        <meta http-equiv="refresh" content="30;url=./index.php">
         <div class="call-to-action">
+            <a href="index.php" class="button black">Home</a>
             <a href="delete.php" class="button black">Delete To-Do</a>
         </div>
     </center>

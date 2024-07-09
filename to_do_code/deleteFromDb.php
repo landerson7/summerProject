@@ -23,6 +23,9 @@
                     <a href="./index.php">Create</a>
                 </li>
                 <li>
+                    <a href="./readRequest.php">Read</a>
+                </li>
+                <li>
                 <a href="./update.php">Update</a>
                 </li>
                 <li>
@@ -40,7 +43,7 @@
     </header>
     <center>
         <?php
-
+        session_start();
         $connect = mysqli_connect(
             'localhost', # service name
             'myadmin', # username
@@ -49,13 +52,13 @@
         );
 
         $title =  $_REQUEST['title'];
-        
+        $user_id = $_SESSION['user_id'];
 
-        $sql = "DELETE FROM to_dos WHERE title=?";
+        $sql = "DELETE FROM to_dos WHERE title=? AND user_id=?";
         $stmt = mysqli_prepare($connect, $sql);
         
         if($stmt){
-            mysqli_stmt_bind_param($stmt, "s", $title);
+            mysqli_stmt_bind_param($stmt, "ss", $title, $user_id);
 
             if(mysqli_stmt_execute($stmt)){
                 echo "<h3>To-do deleted.</h3>";

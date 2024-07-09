@@ -22,7 +22,9 @@
                 <li>
                     <a href="./insert.php">Create</a>
                 </li>
-                
+                <li>
+                    <a href="./readRequest.php">Read</a>
+                </li>
                 <li>
                     <a href="./update.php">Update</a>
                 </li>
@@ -43,8 +45,9 @@
         <div class="notebook-paper">
             <h1 class="title">To-Dos for 
                 <?php
+                    
                     $date_of_to_do = $_REQUEST['date_of_to_do'];
-
+                    
                     // Create a DateTime object from the provided date string
                     $date = new DateTime($date_of_to_do);
                     
@@ -55,6 +58,7 @@
             </h1>
             <div class="content">
             <?php
+                session_start(); //have to do this to access browser session
                 // Connect to the database
                 $connect = mysqli_connect('localhost', 'myadmin', 'Spiderman12', 'to_dos');
                 if (!$connect) {
@@ -63,16 +67,16 @@
 
                 // Get the date from the request
                 $date_of_to_do = $_REQUEST['date_of_to_do'];
-
+                $user_id = $_SESSION['user_id'];
                 // Define the SQL query
-                $sql = 'SELECT title, body, date_of_to_do FROM to_dos WHERE date_of_to_do = ?';
+                $sql = 'SELECT title, body, date_of_to_do FROM to_dos WHERE date_of_to_do = ? AND user_id=?';
 
                 // Prepare the statement
                 $stmt = mysqli_prepare($connect, $sql);
 
                 if ($stmt) {
                     // Bind parameters
-                    mysqli_stmt_bind_param($stmt, "s", $date_of_to_do);
+                    mysqli_stmt_bind_param($stmt, "ss", $date_of_to_do, $user_id);
 
                     // Execute the statement
                     if (mysqli_stmt_execute($stmt)) {

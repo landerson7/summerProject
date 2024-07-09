@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $stmt = $connect->prepare("SELECT * FROM users WHERE username=?"); 
+    
     if ($stmt) {
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -81,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br>
         <a href="forgotPassword.php">Forgot Password?</a>
     </div>
+    <a href="index.php" class="button black">Home</a>
 </section>
 </body>
 </html>

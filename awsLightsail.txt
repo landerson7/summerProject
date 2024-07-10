@@ -1,0 +1,47 @@
+Currently deployed through AWS Lightsail
+
+To access info and edit website:
+
+1) Log in to AWS Lightsail
+2) Go to LAMP_PHP_8-1_Planner_Anderson shell
+3) Go to console, do git pull in the htdocs folder
+4) This should work, if not whole NEW instance will need to be created 
+
+To access db info:
+
+1) Log in to AWS Lightsail
+2) Go to LAMP_PHP_8-1_Planner_Anderson shell
+3) Run sudo /opt/bitnami/mariadb/bin/mariadb -u root -p
+4) Enter password: =LR8pbWBsFdy
+5) Now you have access to the db
+
+Check ChatGPT convos for more info.
+
+these are the Lightsail tables:
+
+CREATE TABLE `to_dos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `body` text,
+  `date_of_to_do` date DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id` (`user_id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+
+
+cat bitnami_application_password =LR8pbWBsFdy
+
